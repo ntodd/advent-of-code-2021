@@ -1,15 +1,15 @@
 defmodule AdventOfCode.Day01 do
   def part1(args) do
-    ints = argsToInts(args)
-    [initial | _] = ints
-
     {_, count} =
-      ints
-      |> Enum.reduce({initial, 0}, fn x, acc ->
-        if x > elem(acc, 0) do
-          {x, elem(acc, 1) + 1}
-        else
-          {x, elem(acc, 1)}
+      argsToInts(args)
+      |> Enum.reduce({0, 0}, fn x, acc ->
+        prev = elem(acc, 0)
+        count = elem(acc, 1)
+
+        cond do
+          prev == 0 -> {x, 0}
+          x > prev -> {x, count + 1}
+          true -> {x, count}
         end
       end)
 
