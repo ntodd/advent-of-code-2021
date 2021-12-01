@@ -17,6 +17,24 @@ defmodule AdventOfCode.Day01 do
   end
 
   def part2(args) do
+    ints = argsToInts(args)
+    [_ | ints2] = ints
+    [_ | ints3] = ints2
+
+    {_, count} =
+      Enum.zip_reduce([ints, ints2, ints3], {0, 0}, fn x, acc ->
+        prev = elem(acc, 0)
+        count = elem(acc, 1)
+        sum = Enum.sum(x)
+
+        cond do
+          prev == 0 -> {sum, 0}
+          sum > prev -> {sum, count + 1}
+          true -> {sum, count}
+        end
+      end)
+
+    count
   end
 
   defp argsToInts(args) when is_list(args) do
