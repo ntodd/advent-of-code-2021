@@ -3,18 +3,33 @@ defmodule AdventOfCode.Day03Test do
 
   import AdventOfCode.Day03
 
-  @tag :skip
-  test "part1" do
-    input = nil
-    result = part1(input)
+  setup do
+    {:ok,
+     input: """
+      00100
+      11110
+      10110
+      10111
+      10101
+      01111
+      00111
+      11100
+      10000
+      11001
+      00010
+      01010
+     """}
+  end
 
-    assert result
+  test "part1", context do
+    result = part1(context[:input])
+
+    assert result == 198
   end
 
   @tag :skip
-  test "part2" do
-    input = nil
-    result = part2(input)
+  test "part2", context do
+    result = part2(context[:input])
 
     assert result
   end
